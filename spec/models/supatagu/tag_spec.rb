@@ -17,5 +17,25 @@ module Supatagu
     it 'should include an error message when the name is blank' do
       @tag.errors[:name].should == ["can't be blank"]
     end
+    
+    describe 'a valid Tag' do
+      before do
+        @tag.name = 'bacon'
+        @tag.save
+      end
+      
+      it 'should return its name' do
+        @tag.to_s.should == 'bacon'
+      end
+      
+      it 'should be unique' do
+        expect {
+          Tag.create!(name: 'bacon')
+        }.to raise_error(
+          ActiveRecord::RecordInvalid, 
+          'Validation failed: Name has already been taken'
+        )
+      end
+    end
   end
 end
