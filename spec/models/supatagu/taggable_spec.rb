@@ -1,18 +1,13 @@
 require 'spec_helper'
 
 module Supatagu
-  describe 'Taggable' do
+  describe Taggable do
     before(:each) do
       @taggable = ::Taggable.create(name: 'A taggable model')
     end
-
-    it 'should respond to taggings' do
-      @taggable.should respond_to(:taggings)
-    end
     
-    it 'should respond to tags' do
-      @taggable.should respond_to(:tags)
-    end
+    it { should have_many(:taggings) }
+    it { should have_many(:tags) }
     
     it 'can be tagged with a CSV string' do
       @taggable.tag_with 'chunky, bacon, ruby, rails'
