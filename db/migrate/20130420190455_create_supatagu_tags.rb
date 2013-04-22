@@ -5,5 +5,7 @@ class CreateSupataguTags < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :supatagu_tags, :name, :unique => true
   end
 end
