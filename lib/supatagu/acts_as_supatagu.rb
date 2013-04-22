@@ -9,10 +9,8 @@ module Supatagu
         
         include Supatagu::ActsAsSupatagu::InstanceMethods
         
-        self.class_eval do
-          def self.tagged_with(tag)
-            Taggable.joins(:tags).where("supatagu_tags.name = ?", tag)
-          end
+        def self.tagged_with(tag)
+          Taggable.joins(:tags).where("supatagu_tags.name = ?", tag)
         end
       end
 
