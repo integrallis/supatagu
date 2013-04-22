@@ -10,6 +10,8 @@ module Supatagu
       defined?(Tag).should be_true
     end
     
+    it { should validate_presence_of(:name) }
+    
     it 'should be invalid without a name' do
       @tag.should_not be_valid
     end
